@@ -1,3 +1,8 @@
 .git
 *Dockerfile*
 node_modules
+.nyc_output
+.circleci
+.dockerignore
+.gitignore
+logs
