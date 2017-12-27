@@ -1,0 +1,18 @@
+{
+    "extends": [
+      "eslint:recommended",
+      "standard",
+      "plugin:jest/recommended"
+    ],
+    "plugins": [
+      "jest"
+    ],
+    "env": {
+      "jest/globals": true
+    },
+    "rules": {
+      "space-before-function-paren": 0,
+      "max-len": ["warn", 120]
+    }
+  }
+  
