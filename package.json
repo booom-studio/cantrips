@@ -18,6 +18,7 @@
   },
   "scripts": {
     "test": "nyc --check-coverage --lines 85 ./node_modules/.bin/mocha --reporter spec",
+    "lint": "eslint src",
     "babel:build": "babel src -d lib",
     "babel:watch": "babel src -d lib -w"
   },
