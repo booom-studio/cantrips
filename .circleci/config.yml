@@ -29,5 +29,5 @@ workflows:
   buildAndPublish:
     jobs:
       - buildAndTest:
-        context: org-global
+          context: org-global
 
