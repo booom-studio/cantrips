@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "standard"
+  ],
+  "parser": "babel-eslint",
+  "rules": {
+    "space-before-function-parent": 0,
+    "max-len": ["warn", 120]
+  }
+}

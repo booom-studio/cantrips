@@ -25,16 +25,15 @@ program
     await docker.buildImage()
     await docker.pushImage()
   })
-  
 
 program.parse(process.argv)
 
-if (!program.args.length) program.help();
+if (!program.args.length) program.help()
 
 process.on('uncaughtException', function (err) {
-  console.log(err);
+  console.log('Uncaught Exception: \n', err)
 })
 
-process.on('unhandledRejection', function(reason, p){
-  console.log("Possibly Unhandled Rejection at: Promise ", p, " reason: ", reason);
-});
+process.on('unhandledRejection', function (reason, p) {
+  console.log('Possibly Unhandled Rejection at: Promise ', p, ' reason: ', reason)
+})

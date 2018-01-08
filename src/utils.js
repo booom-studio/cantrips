@@ -1,8 +1,7 @@
 'use strict'
 
-function normalizeString(name) {
-  return name.split('/').join('-');
-
+function normalizeString (name) {
+  return name.split('/').join('-')
 }
 
 module.exports = {
