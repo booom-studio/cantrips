@@ -1,6 +1,5 @@
 'use strict'
 
-
 function determineCiServer() {
   if (process.env.CIRCLECI) {
     return "CircleCi"
