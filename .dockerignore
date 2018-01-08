@@ -5,4 +5,7 @@ node_modules
 .circleci
 .dockerignore
 .gitignore
+.babelrc
+.eslintrc.json
+src
 logs

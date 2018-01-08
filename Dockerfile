@@ -13,4 +13,4 @@ ENV PATH /opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY . /opt/app
 
-CMD [ "node", "src/app.js" ]
+CMD [ "node", "lib/app.js" ]
