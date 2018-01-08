@@ -1,7 +1,14 @@
+'use strict'
+
 const { exec } = require('child_process');
 const logger = require('./logger')
+const path = require('path')
+
+import parameterProvider from './parameterProvider'
+const { normalizeString } = require('./utils')
 
 async function runCommand(command) {
+  logger.debug(`Running command: ${command}`)
   const childProcess = exec(command, (error, stdout, stderr) => {
     if (error) {
       logger.error(`exec error: ${error}`);
@@ -14,19 +21,29 @@ async function runCommand(command) {
       resolve(true)
     })
   })
+  return new Promise((resolve, reject) => {
+      
+      resolve(true)
+      
+    })
 }
 
+
 async function buildImage(imageName = null, noCache = true) {
-  imageName = imageName || computeDefaultImageName()
+  imageName = imageName || await computeDefaultImageName()
   return runCommand(`docker build ${noCache ? ' --no-cache' : ''} -t ${imageName} .`)
 }
 
 
 async function pushImage(imageName = null, target = null, tags = null, latest = false) {
-  imageName = imageName || computeDefaultImageName()
-  target = target || computeDefaultTarget()
-  tags = tags || computeDefaultTags()
+  imageName = imageName || await computeDefaultImageName()
+  target = target || await computeDefaultTarget()
+  tags = tags || await computeDefaultTags()
+  if (!tags) {
+    logger.info('No tags to push!')
+  }
   if (latest) {
+    logger.debug('Pushing latest image')
     await runCommand(`docker push ${target}:latest`)
   }
   for (const tag of tags) {
@@ -46,16 +63,16 @@ async function login(username, password) {
   return runCommand(`docker login -u ${username} -p ${password}`)
 }
 
-function computeDefaultTags() {
-  return ['0.9.0']
+async function computeDefaultTags() {
+  return await parameterProvider.getParameter("IsRelease") ? await parameterProvider.getParameter("ReleaseVersion") : normalizeString(await parameterProvider.getParameter("BranchName"))
 }
 
-function computeDefaultImageName() {
-  return "booom/cantrips"
+async function computeDefaultImageName() {
+  return normalizeString(await parameterProvider.getParameter("ProjectName"))
 }
 
-function computeDefaultTarget() {
-  return "booom/cantrips"
+async function computeDefaultTarget() {
+  return path.join(await parameterProvider.getParameter("DockerTarget"), await computeDefaultImageName())
 }
 
 module.exports = {

@@ -9,12 +9,19 @@
     "chai": "^4.1.2",
     "commander": "^2.12.2",
     "mocha": "^4.0.1",
+    "simple-git": "^1.85.0",
     "winston": "^2.4.0"
   },
   "scripts": {
-    "test": "nyc --check-coverage --lines 85 ./node_modules/.bin/mocha --reporter spec"
+    "test": "nyc --check-coverage --lines 85 ./node_modules/.bin/mocha --reporter spec",
+    "babel:build": "babel src -d lib",
+    "babel:watch": "babel src -d lib -w"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
     "eslint": "^4.14.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-standard": "^11.0.0-beta.0",

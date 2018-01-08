@@ -1,3 +1,5 @@
+'use strict'
+
 const aws = require('./aws')
 const docker = require('./docker')
 const pjson = require('../package.json')
