@@ -11,18 +11,26 @@ var osTmpdir = require('os-tmpdir')
 let tempDir = path.join(osTmpdir(), 'mvu_test_dir')
 GitHandler.repoLocation = tempDir
 
+function recreateGitRepository () {
+  if (fs.existsSync(tempDir)) {
+    deleteFolderRecursive(tempDir)
+  }
+  fs.mkdirSync(tempDir)
+  childProcess.execSync(`cd ${tempDir} && git init && 
+    git config user.email "test@example.com" &&
+    git config user.name "Test User" &&
+    git checkout -b workbranch && 
+    git commit --allow-empty -m "test"`)
+}
+
 describe('GitHandler', () => {
-  beforeEach(() => {
+  after(() => {
     if (fs.existsSync(tempDir)) {
       deleteFolderRecursive(tempDir)
     }
-    fs.mkdirSync(tempDir)
-    childProcess.execSync(`cd ${tempDir} && git init && git checkout -b workbranch && git commit --allow-empty -m "test"`)
   })
-  afterEach(() => {
-    if (fs.existsSync(tempDir)) {
-      deleteFolderRecursive(tempDir)
-    }
+  beforeEach(() => {
+    recreateGitRepository()
   })
 
   describe('status', async () => {
