@@ -57,7 +57,9 @@ async function login (username, password) {
 }
 
 async function computeDefaultTags () {
-  return await parameterProvider.getParameter('IsRelease') ? parameterProvider.getParameter('ReleaseVersion') : normalizeString(await parameterProvider.getParameter('BranchName'))
+  return await parameterProvider.getParameter('IsRelease')
+    ? parameterProvider.getParameter('ReleaseVersion')
+    : normalizeString(await parameterProvider.getParameter('BranchName'))
 }
 
 async function computeDefaultImageName () {

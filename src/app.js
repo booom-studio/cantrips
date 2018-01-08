@@ -4,6 +4,7 @@
 const aws = require('./aws')
 const docker = require('./docker')
 const pjson = require('../package.json')
+const logger = require('./logger')
 
 const program = require('commander')
 
@@ -31,9 +32,9 @@ program.parse(process.argv)
 if (!program.args.length) program.help()
 
 process.on('uncaughtException', function (err) {
-  console.log('Uncaught Exception: \n', err)
+  logger.error('Uncaught Exception: \n', err)
 })
 
 process.on('unhandledRejection', function (reason, p) {
-  console.log('Possibly Unhandled Rejection at: Promise ', p, ' reason: ', reason)
+  logger.error('Possibly Unhandled Rejection at: Promise ', p, ' reason: ', reason)
 })
