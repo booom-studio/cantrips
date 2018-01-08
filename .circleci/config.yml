@@ -2,7 +2,7 @@ version: 2
 jobs:
   buildAndTest:
     docker:
-      - image: node:9
+      - image: circleci/node
     steps:
       - checkout
       - restore_cache:
@@ -23,7 +23,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-
+  
 workflows:
   version: 2
   buildAndPublish:
