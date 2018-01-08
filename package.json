@@ -17,7 +17,7 @@
     "winston": "^2.4.0"
   },
   "scripts": {
-    "test": "nyc --check-coverage --lines 85 ./node_modules/.bin/mocha --reporter spec",
+    "test": "nyc --check-coverage --lines 85 ./node_modules/.bin/mocha --require babel-register --reporter spec",
     "lint": "eslint src",
     "babel:build": "babel src -d lib",
     "babel:watch": "babel src -d lib -w"
