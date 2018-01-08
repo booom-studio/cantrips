@@ -17,7 +17,7 @@ describe('GitHandler', () => {
       deleteFolderRecursive(tempDir)
     }
     fs.mkdirSync(tempDir)
-    childProcess.execSync(`cd ${tempDir} && git init`)
+    childProcess.execSync(`cd ${tempDir} && git init && git checkout -b workbranch && git commit --allow-empty -m "test"`)
   })
   afterEach(() => {
     if (fs.existsSync(tempDir)) {
@@ -32,6 +32,12 @@ describe('GitHandler', () => {
     })
     it('should give back empty array if there are no uncommited changes', async () => {
       expect(await GitHandler.status()).to.be.eql([])
+    })
+  })
+
+  describe('currentBranch', async () => {
+    it('gives back the current branch name', async () => {
+      expect(await GitHandler.getCurrentBranch()).to.be.equal('workbranch')
     })
   })
 })
