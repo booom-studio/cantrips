@@ -61,7 +61,7 @@ workflows:
             - buildAndTest
           filters:
             tags:
-              only: /release-.*/
+              only: /^release-.*/
             branches:
               ignore: /.*/
           context: org-global
