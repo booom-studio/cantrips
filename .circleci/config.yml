@@ -15,6 +15,9 @@ jobs:
           name: Lint
           command: npm run lint
       - run:
+          name: Babel build
+          command: npm run babel:build
+      - run:
           name: Test
           command: npm test
       - run:

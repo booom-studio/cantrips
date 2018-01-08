@@ -1,6 +1,7 @@
 'use strict'
 
-import parameterProvider from './parameterProvider'
+import { ParameterProvider } from './parameterProvider'
+const parameterProvider = new ParameterProvider()
 
 const { exec } = require('child_process')
 const logger = require('./logger')

@@ -7,17 +7,11 @@ function determineCiServer () {
   throw Error('Unknown CI server environment')
 }
 
-class ParameterProvider {
+export class ParameterProvider {
   constructor () {
     this.ciServer = determineCiServer()
 
     this.parameterMap = {
-      ProjectName: {
-        CircleCi: () => {
-          const result = `${process.env.CIRCLE_PROJECT_USERNAME || ''}/${process.env.CIRCLE_PROJECT_REPONAME || ''}`
-          return result !== '/' ? result : 'unknown'
-        }
-      },
       DockerTarget: {
         CircleCi: ''
       },
@@ -41,6 +35,12 @@ class ParameterProvider {
     this.parameterMap = Object.assign({}, this.parameterMap, {
       IsRelease: {
         CircleCi: this.getParameter('Tag') && this.getParameter('Tag').startsWith(this.getParameter('ReleaseTagFormat'))
+      },
+      ProjectName: {
+        CircleCi: () => {
+          const result = `${process.env.CIRCLE_PROJECT_USERNAME || ''}/${process.env.CIRCLE_PROJECT_REPONAME || ''}`
+          return result !== '/' ? result : 'unknown'
+        }
       }
     })
   }
@@ -56,5 +56,3 @@ class ParameterProvider {
     return result
   }
 }
-
-export default new ParameterProvider()

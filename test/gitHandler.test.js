@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 
-var GitHandler = require('../src/gitHandler.js')
+import GitHandler from '../src/gitHandler'
+
 var path = require('path')
 var chai = require('chai')
 var expect = chai.expect
@@ -8,7 +9,8 @@ var childProcess = require('child_process')
 var fs = require('fs')
 var osTmpdir = require('os-tmpdir')
 
-let tempDir = path.join(osTmpdir(), 'mvu_test_dir')
+let tempDir = path.join(osTmpdir(), 'cantrips_test_dir')
+
 GitHandler.repoLocation = tempDir
 
 function recreateGitRepository () {
