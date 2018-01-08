@@ -2,6 +2,7 @@
 'use strict'
 
 const aws = require('./aws')
+const npm = require('./npm')
 const docker = require('./docker')
 const pjson = require('../package.json')
 const logger = require('./logger')
@@ -16,8 +17,8 @@ program
   .option(' --accessKeyId [accessKeyId]', 'Which accessKeyId to use')
   .option(' --secretAccessKey [secretAccessKey]', 'Which secretAccessKey to use')
   .option(' --userFolder [userFolder]', 'Which userFolder to use')
-  .action((options) => {
-    aws.createCredentials(options.accessKeyId, options.secretAccessKey, options.userFolder)
+  .action(async (options) => {
+    await aws.createCredentials(options.accessKeyId, options.secretAccessKey, options.userFolder)
   })
 
 program
@@ -25,6 +26,12 @@ program
   .action(async (options) => {
     await docker.buildImage()
     await docker.pushImage()
+  })
+
+program
+  .command('npm credentials')
+  .action(async (options) => {
+    await npm.createCredentials()
   })
 
 program.parse(process.argv)
