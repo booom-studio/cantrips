@@ -27,8 +27,6 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-
-
   publish:
     docker:
        - image: circleci/node
