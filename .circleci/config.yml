@@ -53,6 +53,9 @@ workflows:
     jobs:
       - buildAndTest:
           context: org-global
+          filters:
+            tags:
+              only: /.*/
       - publish:
           requires:
             - buildAndTest
