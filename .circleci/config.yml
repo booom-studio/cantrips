@@ -34,11 +34,11 @@ jobs:
       - setup_remote_docker
       - checkout
       - run:
-          name: Install Cantrips
-          command: sudo npm i -g cantrips
-      - run:
           name: Babel build
-          command: npm run babel:build
+          command: npm install && npm run babel:build
+      - run:
+          name: Install Cantrips
+          command: sudo npm i -g cantrips@"<=1.0.0"
       - run: 
           name: Npm credentials
           command: cantrips npm credentials
