@@ -35,7 +35,7 @@ jobs:
       - checkout
       - run:
           name: Install Cantrips
-          command: npm i -g cantrips
+          command: sudo npm i -g cantrips
       - run:
           name: Babel build
           command: npm run babel:build
