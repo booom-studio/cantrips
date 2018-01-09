@@ -1,9 +1,9 @@
 {
-  "currentVersion": "0.9.4",
+  "currentVersion": "0.9.5",
   "createCommit": true,
   "createTag": true,
-  "tagPattern": "release-{newVersion}",
   "commitMessage": "chore(package.json): Bump version: {currentVersion} → {newVersion}",
+  "tagPattern": "release-{newVersion}",
   "technologies": {
     "Npm": {
       "configFiles": {
