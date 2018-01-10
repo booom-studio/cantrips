@@ -4183,6 +4183,47 @@
         "pretty-format": "22.0.5"
       }
     },
+    "jest-spec-reporter": {
+      "version": "1.0.3",
+      "resolved": "https://registry.npmjs.org/jest-spec-reporter/-/jest-spec-reporter-1.0.3.tgz",
+      "integrity": "sha512-75PjI/2P5+FA/peUS1DBEbJXcrYS4YRd+bRvZwWh5sZSwpbg4/mQdJP5jhVCOLlytHBh9OWbbT0wd7c9XND+AQ==",
+      "dev": true,
+      "requires": {
+        "chalk": "2.1.0",
+        "moment": "2.18.1"
+      },
+      "dependencies": {
+        "ansi-styles": {
+          "version": "3.2.0",
+          "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-3.2.0.tgz",
+          "integrity": "sha512-NnSOmMEYtVR2JVMIGTzynRkkaxtiq1xnFBcdQD/DnNCYPoEPsVJhM98BDyaoNOQIi7p4okdi3E27eN7GQbsUug==",
+          "dev": true,
+          "requires": {
+            "color-convert": "1.9.1"
+          }
+        },
+        "chalk": {
+          "version": "2.1.0",
+          "resolved": "https://registry.npmjs.org/chalk/-/chalk-2.1.0.tgz",
+          "integrity": "sha512-LUHGS/dge4ujbXMJrnihYMcL4AoOweGnw9Tp3kQuqy1Kx5c1qKjqvMJZ6nVJPMWJtKCTN72ZogH3oeSO9g9rXQ==",
+          "dev": true,
+          "requires": {
+            "ansi-styles": "3.2.0",
+            "escape-string-regexp": "1.0.5",
+            "supports-color": "4.5.0"
+          }
+        },
+        "supports-color": {
+          "version": "4.5.0",
+          "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-4.5.0.tgz",
+          "integrity": "sha1-vnoN5ITexcXN34s9WRJQRJEvY1s=",
+          "dev": true,
+          "requires": {
+            "has-flag": "2.0.0"
+          }
+        }
+      }
+    },
     "jest-util": {
       "version": "22.0.5",
       "resolved": "https://registry.npmjs.org/jest-util/-/jest-util-22.0.5.tgz",
@@ -4563,6 +4604,12 @@
       "requires": {
         "minimist": "0.0.8"
       }
+    },
+    "moment": {
+      "version": "2.18.1",
+      "resolved": "https://registry.npmjs.org/moment/-/moment-2.18.1.tgz",
+      "integrity": "sha1-w2GT3Tzhwu7SrbfIAtu8d6gbHA8=",
+      "dev": true
     },
     "ms": {
       "version": "2.0.0",
