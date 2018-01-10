@@ -13,7 +13,7 @@ export class ParameterProvider {
 
     this.parameterMap = {
       DockerTarget: {
-        CircleCi: ''
+        CircleCi: process.env.DOCKER_TARGET || ''
       },
       Tag: {
         CircleCi: process.env.CIRCLE_TAG || ''
