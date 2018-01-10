@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+/* eslint-env jest */
 
 const npm = require('../src/npm')
 const tmp = require('tmp')
@@ -9,11 +9,11 @@ const expect = require('chai').expect
 describe('createCredentials', () => {
   var tempDir = tmp.dirSync({unsafeCleanup: true})
   const authToken = 'authToken'
-  before(() => {
+  beforeAll(() => {
     process.env.NPM_AUTH_TOKEN = authToken
   })
 
-  after(() => {
+  afterAll(() => {
     tempDir.removeCallback()
   })
 

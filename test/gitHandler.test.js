@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+/* eslint-env jest */
 
 import GitHandler from '../src/gitHandler'
 
@@ -18,15 +18,15 @@ function recreateGitRepository () {
     deleteFolderRecursive(tempDir)
   }
   fs.mkdirSync(tempDir)
-  childProcess.execSync(`cd ${tempDir} && git init && 
+  childProcess.execSync(`cd ${tempDir} && git init &&
     git config user.email "test@example.com" &&
     git config user.name "Test User" &&
-    git checkout -b workbranch && 
+    git checkout -b workbranch &&
     git commit --allow-empty -m "test"`)
 }
 
 describe('GitHandler', () => {
-  after(() => {
+  afterAll(() => {
     if (fs.existsSync(tempDir)) {
       deleteFolderRecursive(tempDir)
     }

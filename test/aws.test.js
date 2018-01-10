@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+/* eslint-env jest */
 
 const aws = require('../src/aws')
 const tmp = require('tmp')
@@ -10,12 +10,12 @@ describe('createCredentials', () => {
   var tempDir = tmp.dirSync({unsafeCleanup: true})
   const validAccessKeyId = 'validAccessKeyId'
   const validSecretAccessKey = 'validSecretAccessKey'
-  before(() => {
+  beforeAll(() => {
     process.env.AWS_ACCESS_KEY_ID = validAccessKeyId
     process.env.AWS_SECRET_ACCESS_KEY = validSecretAccessKey
   })
 
-  after(() => {
+  afterAll(() => {
     tempDir.removeCallback()
   })
 

@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+/* eslint-env jest */
 import { ParameterProvider } from '../src/parameterProvider'
 
 var chai = require('chai')
@@ -6,7 +6,7 @@ var expect = chai.expect
 
 describe('parameterProvider', () => {
   var provider
-  before(() => {
+  beforeAll(() => {
     process.env.CIRCLECI = 'CIRCLECI'
     process.env.CIRCLE_BRANCH = 'validBranchName'
     process.env.CIRCLE_PROJECT_USERNAME = 'validUser'
