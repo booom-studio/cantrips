@@ -1,6 +1,6 @@
 {
   "name": "cantrips",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "description": "Cantrips for more descriptive builds",
   "main": "./lib/app.js",
   "bin": {
