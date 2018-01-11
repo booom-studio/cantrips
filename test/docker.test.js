@@ -33,7 +33,7 @@ function snapShotDockerImages () {
     .split('\n')
 }
 
-describe('docker', () => {
+describe('docker', async () => {
   var alreadyPresentDockerImage
   var dockerHandler
   var validDockerImageName = 'my-test-org-my-test-image'
