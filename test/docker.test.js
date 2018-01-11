@@ -33,7 +33,7 @@ function snapShotDockerImages () {
     .split('\n')
 }
 
-describe('docker', () => {
+describe('docker', async () => {
   var alreadyPresentDockerImage
   var dockerHandler
   var validDockerImageName = 'my-test-org-my-test-image'
@@ -63,12 +63,12 @@ describe('docker', () => {
   })
 
   describe('buildImage', async () => {
-    it.skip('docker images can be built with image name parameter', async () => {
+    it('docker images can be built with image name parameter', async () => {
       await dockerHandler.buildImage(validDockerImageName)
       expect(getDockerImageList()).to.include(`${validDockerImageName}:latest`)
     })
 
-    it.skip('default docker image name is used on not setting it as parameter', async () => {
+    it('default docker image name is used on not setting it as parameter', async () => {
       await dockerHandler.buildImage()
       expect(getDockerImageList()).to.include('validuser-validreponame:latest')
     })
