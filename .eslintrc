@@ -4,8 +4,13 @@
     "standard"
   ],
   "parser": "babel-eslint",
+  "plugins": [
+    "chai-friendly"
+  ],
   "rules": {
     "space-before-function-parent": 0,
-    "max-len": ["warn", 120]
+    "max-len": ["warn", 120],
+    "no-unused-expressions": 0,
+    "chai-friendly/no-unused-expressions": 2
   }
 }
