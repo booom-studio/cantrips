@@ -1,9 +1,11 @@
 #! /usr/bin/env node
 'use strict'
+import ElasticBeanstalk from './elasticBeanstalk'
 
 const aws = require('./aws')
 const npm = require('./npm')
 const docker = require('./docker')
+
 const pjson = require('../package.json')
 const logger = require('./logger')
 
@@ -32,6 +34,13 @@ program
   .command('npm credentials')
   .action(async (options) => {
     await npm.createCredentials()
+  })
+
+program
+  .command('elasticBeanstalk deploy')
+  .option(' --branchPattern [branchPattern]', 'Which accessKeyId to use')
+  .action(async (options) => {
+    await ElasticBeanstalk.deploy(options.branchPattern)
   })
 
 program.parse(process.argv)
