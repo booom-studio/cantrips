@@ -4,7 +4,7 @@ import logger from './logger'
 import { ParameterProvider } from './parameterProvider'
 import { runCommand } from './utils'
 
-export class ElasticBeanstalk {
+export default class ElasticBeanstalk {
   constructor (commandRunner = undefined) {
     this.parameterProvider = new ParameterProvider()
     this.runCommand = commandRunner || runCommand
@@ -43,5 +43,3 @@ export class ElasticBeanstalk {
     return this.runCommand(`eb deploy ${targetEnvironment} --timeout ${timeout}`)
   }
 }
-
-export default new ElasticBeanstalk()

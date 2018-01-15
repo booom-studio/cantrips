@@ -1,6 +1,6 @@
 /* eslint-env jest */
 
-const { ElasticBeanstalk } = require('../src/elasticBeanstalk')
+import ElasticBeanstalk from '../src/elasticBeanstalk'
 
 const chai = require('chai')
 const chaiAsPromised = require('chai-as-promised')
@@ -62,7 +62,8 @@ describe('elasticBeanstalk', () => {
         .to.contain(`eb deploy ${otherValidEnvironment} --timeout ${defaultTimeout}`)
     })
     it('throws error if there is not matching environment for the current branch', async () => {
-      elasticBeanstalk.deploy(invalidBranchPattern).should.be.rejectedWith(Error)
+      expect(elasticBeanstalk.deploy(invalidBranchPattern))
+        .to.be.rejectedWith(Error, /No matching environment/)
     })
   })
 })

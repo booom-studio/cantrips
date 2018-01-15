@@ -40,7 +40,7 @@ program
   .command('elasticBeanstalk deploy')
   .option(' --branchPattern [branchPattern]', 'Which accessKeyId to use')
   .action(async (options) => {
-    await ElasticBeanstalk.deploy(options.branchPattern)
+    await new ElasticBeanstalk().deploy(options.branchPattern)
   })
 
 program.parse(process.argv)
