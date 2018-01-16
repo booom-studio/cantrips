@@ -1,4 +1,4 @@
-var simpleGit = require('simple-git')
+import simpleGit from 'simple-git'
 var map = Array.prototype.map
 
 class GitHandler {

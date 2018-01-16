@@ -1,8 +1,8 @@
 'use strict'
 
-const fs = require('fs')
-const path = require('path')
-const winston = require('winston')
+import fs from 'fs'
+import path from 'path'
+import winston from 'winston'
 
 winston.emitErrs = true
 const logFolder = './logs'

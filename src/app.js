@@ -2,14 +2,12 @@
 'use strict'
 import ElasticBeanstalk from './elasticBeanstalk'
 
-const aws = require('./aws')
-const npm = require('./npm')
-const docker = require('./docker')
-
-const pjson = require('../package.json')
-const logger = require('./logger')
-
-const program = require('commander')
+import aws from './aws'
+import npm from './npm'
+import docker from './docker'
+import pjson from '../package.json'
+import logger from './logger'
+import program from 'commander'
 
 program
   .version(pjson.version)
