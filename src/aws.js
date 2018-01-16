@@ -10,6 +10,10 @@ async function createCredentials (accessKeyId = null, secretAccessKey = null, us
   secretAccessKey = secretAccessKey || process.env.AWS_SECRET_ACCESS_KEY
   userFolder = userFolder || '~/.aws'
 
+  if (!accessKeyId || !secretAccessKey) {
+    throw Error('AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment parameters are mandatory')
+  }
+
   if (!fs.existsSync(userFolder)) {
     fs.mkdirSync(userFolder)
   }
