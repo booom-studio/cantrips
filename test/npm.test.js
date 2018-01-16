@@ -1,10 +1,10 @@
 /* eslint-env jest */
 
-const npm = require('../src/npm')
-const tmp = require('tmp')
-const fs = require('fs')
-const path = require('path')
-const expect = require('chai').expect
+import npm from '../src/npm'
+import tmp from 'tmp'
+import fs from 'fs'
+import path from 'path'
+import { expect } from 'chai'
 
 describe('createCredentials', () => {
   var tempDir = tmp.dirSync({unsafeCleanup: true})

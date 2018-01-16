@@ -1,11 +1,9 @@
 /* eslint-env jest */
 
 import ElasticBeanstalk from '../src/elasticBeanstalk'
+import chai, { expect } from 'chai'
+import chaiAsPromised from 'chai-as-promised'
 
-const chai = require('chai')
-const chaiAsPromised = require('chai-as-promised')
-const expect = chai.expect
-chai.should()
 chai.use(chaiAsPromised)
 
 describe('elasticBeanstalk', () => {

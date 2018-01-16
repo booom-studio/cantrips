@@ -1,8 +1,7 @@
 /* eslint-env jest */
 import { ParameterProvider } from '../src/parameterProvider'
 
-var chai = require('chai')
-var expect = chai.expect
+import { expect } from 'chai'
 
 describe('parameterProvider', () => {
   var provider

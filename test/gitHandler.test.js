@@ -2,12 +2,11 @@
 
 import GitHandler from '../src/gitHandler'
 
-var path = require('path')
-var chai = require('chai')
-var expect = chai.expect
-var childProcess = require('child_process')
-var fs = require('fs')
-var osTmpdir = require('os-tmpdir')
+import path from 'path'
+import { expect } from 'chai'
+import childProcess from 'child_process'
+import fs from 'fs'
+import osTmpdir from 'os-tmpdir'
 
 let tempDir = path.join(osTmpdir(), 'cantrips_test_dir')
 

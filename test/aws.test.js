@@ -1,10 +1,11 @@
 /* eslint-env jest */
 
-const aws = require('../src/aws')
-const tmp = require('tmp')
-const fs = require('fs')
-const path = require('path')
-const expect = require('chai').expect
+import aws from '../src/aws'
+import tmp from 'tmp'
+import fs from 'fs'
+import path from 'path'
+
+import { expect } from 'chai'
 
 describe('createCredentials', () => {
   var tempDir = tmp.dirSync({unsafeCleanup: true})
