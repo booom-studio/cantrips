@@ -4,11 +4,11 @@ import fs from 'fs'
 import path from 'path'
 import logger from './logger'
 
-async function createCredentials (accessKeyId = null, secretAccessKey = null, userFolder = null) {
+async function createCredentials ({accessKeyId, secretAccessKey, userFolder}) {
   logger.info(`Creating AWS credential file...`)
   accessKeyId = accessKeyId || process.env.AWS_ACCESS_KEY_ID
   secretAccessKey = secretAccessKey || process.env.AWS_SECRET_ACCESS_KEY
-  userFolder = userFolder || '~/.aws'
+  userFolder = userFolder || path.join(process.env.HOME, '.aws')
 
   if (!accessKeyId || !secretAccessKey) {
     throw Error('AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment parameters are mandatory')
