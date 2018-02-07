@@ -2,15 +2,18 @@
 
 import { runCommand } from '../utils'
 
-export default async (imageUrl) => {
-  const container = new Container(imageUrl)
+export default async (...args) => {
+  const container = new Container(...args)
   await container.initializeContainer()
   return container
 }
 
 class Container {
-  constructor (imageUrl) {
+  constructor (imageUrl, options) {
     this.imageUrl = imageUrl
+    if (options) {
+      this.volumes = options.volumes || []
+    }
   }
 
   async initializeContainer (imageUrl) {
@@ -18,6 +21,9 @@ class Container {
   }
 
   async run (command) {
-    return runCommand(`docker run ${this.imageUrl} ${command}`)
+    return runCommand(`docker run \
+      ${this.volumes ? '-v ' : ''}${this.volumes.join('-v ')} \
+      ${this.imageUrl} \
+      ${command}`)
   }
 }

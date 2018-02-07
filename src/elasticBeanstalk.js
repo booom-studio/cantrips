@@ -2,13 +2,27 @@
 
 import logger from './logger'
 import { ParameterProvider } from './parameterProvider'
-import { runCommand } from './utils'
+import ContainerProvider from './docker/ContainerProvider'
 
-export default class ElasticBeanstalk {
-  constructor (commandRunner = undefined) {
+export default async (...args) => {
+  const handler = new ElasticBeanstalk(args)
+  await handler.init()
+  return handler
+}
+
+class ElasticBeanstalk {
+  constructor () {
+    this.imageUrl = 'mini/eb-cli'
     this.parameterProvider = new ParameterProvider()
-    this.runCommand = commandRunner || runCommand
+    this.container = undefined
   }
+
+  async init () {
+    this.container = await ContainerProvider(this.imageUrl, {
+      volumes: ['$HOME/.aws:/home/aws/.aws']
+    })
+  }
+
   // branchName:environmentName|branchName:environmentName
   async resolvePatternString (patternString) {
     return patternString.split('|').reduce((aggregated, pattern) => {
@@ -40,6 +54,6 @@ export default class ElasticBeanstalk {
       throw Error(`No matching environment for branch ${branchName}`)
     }
     logger.debug(`Matching environment name: ${targetEnvironment}`)
-    return this.runCommand(`eb deploy ${targetEnvironment} --timeout ${timeout}`)
+    return this.container.run(`init && eb deploy ${targetEnvironment} --timeout ${timeout}`)
   }
 }

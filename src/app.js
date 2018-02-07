@@ -45,14 +45,15 @@ program
   })
 
 program
-  .command('elasticBeanstalk deploy')
+  .command('elasticBeanstalk')
   .option(' --branchPattern [branchPattern]', 'Which accessKeyId to use')
   .option(' --accessKeyId [accessKeyId]', 'Which accessKeyId to use')
   .option(' --secretAccessKey [secretAccessKey]', 'Which secretAccessKey to use')
   .option(' --userFolder [userFolder]', 'Which userFolder to use')
   .action(async (options) => {
-    await aws.createCredentials(options)
-    await new ElasticBeanstalk(options).deploy(options.branchPattern)
+    // await aws.createCredentials(options)
+
+    (await ElasticBeanstalk(options)).deploy(options.branchPattern)
   })
 
 program.parse(process.argv)
