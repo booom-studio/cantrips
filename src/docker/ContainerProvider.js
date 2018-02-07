@@ -13,7 +13,7 @@ class Container {
   constructor (imageUrl, options) {
     this.imageUrl = imageUrl
     this.volumes = options ? options.volumes : []
-    this.environment = {}
+    this.environment = options ? options.volumes : {}
   }
 
   addEnvironmentVariable (name, value) {
