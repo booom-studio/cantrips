@@ -19,8 +19,13 @@ async function createCredentials ({accessKeyId, secretAccessKey, userFolder}) {
   }
 
   const config = `[profile eb-cli]\naws_access_key_id=${accessKeyId}\naws_secret_access_key=${secretAccessKey}\n`
+  const configFilePath = path.join(userFolder, 'config')
+  if (fs.existsSync(configFilePath)) {
+    logger.warn(`Backing up existing npmrc ${configFilePath} as ${configFilePath}_old`)
+    fs.renameSync(configFilePath, `${configFilePath}_old`)
+  }
 
-  fs.writeFileSync(path.join(userFolder, 'config'), config, { mode: '600' })
+  fs.writeFileSync(configFilePath, config, { mode: '600' })
 
   logger.info(`AWS credential file created: ${userFolder}/config`)
 }
