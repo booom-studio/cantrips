@@ -11,9 +11,7 @@ export default async (...args) => {
 class Container {
   constructor (imageUrl, options) {
     this.imageUrl = imageUrl
-    if (options) {
-      this.volumes = options.volumes || []
-    }
+    this.volumes = options ? options.volumes : []
   }
 
   async initializeContainer (imageUrl) {
@@ -22,7 +20,7 @@ class Container {
 
   async run (command) {
     return runCommand(`docker run \
-      ${this.volumes ? '-v ' : ''}${this.volumes.join('-v ')} \
+      ${this.volumes.length ? '-v ' : ''}${this.volumes.join('-v ')} \
       ${this.imageUrl} \
       ${command}`)
   }
