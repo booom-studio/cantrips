@@ -64,7 +64,7 @@ describe('elasticBeanstalk', () => {
       expect(messages)
         .to.contain(`init && eb deploy ${otherValidEnvironment} --timeout ${defaultTimeout}`)
     })
-    it('throws error if there is not matching environment for the current branch', async () => {
+      it('throws error if there is not matching environment for the current branch', async () => {
       expect(elasticBeanstalk.deploy(invalidBranchPattern))
         .to.be.rejectedWith(Error, /No matching environment/)
     })

@@ -9,11 +9,12 @@ export default async (...args) => {
   return container
 }
 
-class Container {
-  constructor (imageUrl, options) {
+export class Container {
+  constructor (imageUrl, options, commandRunner = undefined) {
     this.imageUrl = imageUrl
     this.volumes = options ? options.volumes : []
-    this.environment = options ? options.volumes : {}
+    this.environment = options ? options.environment : {}
+    this.runCommand = commandRunner || runCommand
   }
 
   addEnvironmentVariable (name, value) {
@@ -22,7 +23,7 @@ class Container {
   }
 
   async initializeContainer (imageUrl) {
-    await runCommand(`docker pull ${this.imageUrl}`)
+    await this.runCommand(`docker pull ${this.imageUrl}`)
   }
 
   async run (command) {
@@ -35,6 +36,6 @@ class Container {
     commandToRun += ` ${this.volumes.length ? '-v ' : ''}${this.volumes.join('-v ')}`
     commandToRun += this.imageUrl
     commandToRun += ` ${command}`
-    return runCommand(commandToRun)
+    return this.runCommand(commandToRun)
   }
 }
