@@ -1,6 +1,6 @@
 {
   "name": "cantrips",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Cantrips for more descriptive builds",
   "main": "./lib/app.js",
   "repository": "https://github.com/booom-studio/cantrips.git",
