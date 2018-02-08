@@ -10,17 +10,13 @@ export default async (options) => {
 }
 
 class S3Handler {
-  constructor ({accessKeyId, secretAccessKey, s3Uri}) {
+  constructor ({accessKeyId, secretAccessKey}, runCommand) {
     this.imageUrl = 'garland/aws-cli-docker'
     this.container = undefined
     this.accessKeyId = accessKeyId || process.env.AWS_ACCESS_KEY_ID
     this.secretAccessKey = secretAccessKey || process.env.AWS_SECRET_ACCESS_KEY
-    this.s3Uri = s3Uri || process.env.s3Uri
     if (!this.accessKeyId || !this.secretAccessKey) {
       throw Error('AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment parameters are mandatory')
-    }
-    if (!this.s3Uri) {
-      throw Error('s3Uri parameter must be specified.')
     }
   }
 
@@ -31,7 +27,7 @@ class S3Handler {
   }
 
   async listBucket (bucketName) {
-    await this.container.run(`aws s3 ls ${this.s3Uri}`)
+    await this.container.run(`aws s3 ls ${bucketName}`)
   }
 
   async get (fileUri, targetPath) {

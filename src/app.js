@@ -42,12 +42,11 @@ program
   .command('s3 <subCommand> [commandParameter1] [commandParameter2]')
   .option(' --accessKeyId [accessKeyId]', 'Which accessKeyId to use')
   .option(' --secretAccessKey [secretAccessKey]', 'Which secretAccessKey to use')
-  .option(' --s3Uri [s3Uri]', 'Which bucket to list')
   .action(async (subCommand, commandParameter1, commandParameter2, options) => {
     const handler = await S3Handler(options)
     switch (subCommand) {
       case 'ls':
-        handler.listBucket()
+        handler.listBucket(commandParameter1)
         return
       case 'get':
         handler.get(commandParameter1, commandParameter2)
