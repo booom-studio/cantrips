@@ -71,8 +71,10 @@ if (!program.args.length) program.help()
 
 process.on('uncaughtException', function (err) {
   logger.error('Uncaught Exception: \n', err)
+  process.exit(-1)
 })
 
 process.on('unhandledRejection', function (reason, p) {
   logger.error('Possibly Unhandled Rejection at: Promise ', p, ' reason: ', reason)
+  process.exit(-1)
 })
