@@ -49,6 +49,7 @@ describe('docker', async () => {
     process.env.DOCKER_PASSWORD = 'validDockerPasswordFromEnv'
     dockerHandler = new DockerHandler(tempDir)
     alreadyPresentDockerImage = snapShotDockerImages()
+    jest.setTimeout(60000)
   })
   afterAll(() => {
     if (fs.existsSync(tempDir)) {

@@ -28,7 +28,8 @@ function deleteFolderRecursive (path) {
 
 async function runCommand (command) {
   logger.debug(`Running command: ${command}`)
-  const childProcess = exec(command, {cwd: this.location}, (error, stdout, stderr) => {
+
+  const childProcess = exec(command, {cwd: process.cwd()}, (error, stdout, stderr) => {
     if (error) {
       logger.error(`exec error: ${error}`)
     }

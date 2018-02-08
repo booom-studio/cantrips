@@ -4,11 +4,11 @@ import fs from 'fs'
 import path from 'path'
 import logger from './logger'
 
-async function createCredentials (accessKeyId = null, secretAccessKey = null, userFolder = null) {
+async function createCredentials ({accessKeyId, secretAccessKey, userFolder}) {
   logger.info(`Creating AWS credential file...`)
   accessKeyId = accessKeyId || process.env.AWS_ACCESS_KEY_ID
   secretAccessKey = secretAccessKey || process.env.AWS_SECRET_ACCESS_KEY
-  userFolder = userFolder || '~/.aws'
+  userFolder = userFolder || path.join(process.env.HOME, '.aws')
 
   if (!accessKeyId || !secretAccessKey) {
     throw Error('AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment parameters are mandatory')
@@ -19,8 +19,13 @@ async function createCredentials (accessKeyId = null, secretAccessKey = null, us
   }
 
   const config = `[profile eb-cli]\naws_access_key_id=${accessKeyId}\naws_secret_access_key=${secretAccessKey}\n`
+  const configFilePath = path.join(userFolder, 'config')
+  if (fs.existsSync(configFilePath)) {
+    logger.warn(`Backing up existing npmrc ${configFilePath} as ${configFilePath}_old`)
+    fs.renameSync(configFilePath, `${configFilePath}_old`)
+  }
 
-  fs.writeFileSync(path.join(userFolder, 'config'), config, { mode: '600' })
+  fs.writeFileSync(configFilePath, config, { mode: '600' })
 
   logger.info(`AWS credential file created: ${userFolder}/config`)
 }

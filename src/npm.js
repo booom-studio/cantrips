@@ -4,7 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import logger from './logger'
 
-async function createCredentials (registryUrl, authToken, userFolder = null) {
+async function createCredentials ({registryUrl, authToken, userFolder}) {
   logger.info(`Creating Npm credential file...`)
   authToken = authToken || process.env.NPM_AUTH_TOKEN
   if (!authToken) {

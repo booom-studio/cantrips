@@ -20,10 +20,11 @@ describe('elasticBeanstalk', () => {
   var multiBranchPattern = `${validBranch}:${validEnvironment}|${otherValidBranch}:${otherValidEnvironment}`
   var invalidBranchPattern = 'notExistingBranch:notExistingEnvironment'
 
-  beforeAll(() => {
+  beforeAll(async () => {
     process.env.CIRCLECI = 'CIRCLECI'
     process.env.CIRCLE_BRANCH = otherValidBranch
-    elasticBeanstalk = new ElasticBeanstalk((command) => messages.push(command))
+    jest.setTimeout(20000)
+    elasticBeanstalk = await ElasticBeanstalk()
   })
   beforeEach(() => {
     messages = []
@@ -55,9 +56,14 @@ describe('elasticBeanstalk', () => {
   })
   describe('deploy', () => {
     it('runs correct command on given branch ', async () => {
+      elasticBeanstalk.container = {
+        run (command) {
+          messages.push(command)
+        }
+      }
       await elasticBeanstalk.deploy(multiBranchPattern)
       expect(messages)
-        .to.contain(`eb deploy ${otherValidEnvironment} --timeout ${defaultTimeout}`)
+        .to.contain(`init && eb deploy ${otherValidEnvironment} --timeout ${defaultTimeout}`)
     })
     it('throws error if there is not matching environment for the current branch', async () => {
       expect(elasticBeanstalk.deploy(invalidBranchPattern))

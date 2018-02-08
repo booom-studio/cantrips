@@ -18,20 +18,20 @@ describe('createCredentials', () => {
   })
 
   it('it uses values from the environment', async () => {
-    await npm.createCredentials(null, null, tempDir.name)
+    await npm.createCredentials({userFolder: tempDir.name})
     var configData = fs.readFileSync(path.join(tempDir.name, '.npmrc'), 'utf8')
     expect(configData).contain(`//registry.npmjs.org/:_authToken=${authToken}\n`)
   })
 
   it('creates npm user folder if does not exists', async () => {
     const innerPath = path.join(tempDir.name, 'inner')
-    await npm.createCredentials(null, null, innerPath)
+    await npm.createCredentials({userFolder: innerPath})
     var configData = fs.readFileSync(path.join(innerPath, '.npmrc'), 'utf8')
     expect(configData).not.to.equal(null)
   })
 
   it('uses provided values over the environment values', async () => {
-    await npm.createCredentials('validRegistryURl', 'validAuthToken', tempDir.name)
+    await npm.createCredentials({registryUrl: 'validRegistryURl', authToken: 'validAuthToken', userFolder: tempDir.name})
     var configData = fs.readFileSync(path.join(tempDir.name, '.npmrc'), 'utf8')
     expect(configData).contain('//validRegistryURl:_authToken=validAuthToken\n')
   })
