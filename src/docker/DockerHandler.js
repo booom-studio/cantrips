@@ -1,6 +1,6 @@
 'use strict'
 
-import { ParameterProvider } from '../ParameterProvider'
+import { ParameterProvider } from '../core/ParameterProvider'
 import { normalizeString, isNormalizedString, runCommand } from '../utils/utils'
 import logger from '../utils/Logger'
 
