@@ -1,11 +1,11 @@
 #! /usr/bin/env node
 'use strict'
 import ElasticBeanstalk from './elasticBeanstalk'
+import { DockerHandler } from './docker/DockerHandler'
+import S3Handler from './s3'
 
 import aws from './aws'
 import npm from './npm'
-import S3Handler from './s3'
-import docker from './docker'
 import pjson from '../package.json'
 import logger from './logger'
 import program from 'commander'
@@ -24,9 +24,15 @@ program
 
 program
   .command('docker')
+  .option(' --skipPush', 'Skip push of created image')
   .action(async (options) => {
-    await docker.buildImage()
-    await docker.pushImage()
+    const handler = new DockerHandler()
+    await handler.buildImage()
+    if (!options.skipPush) {
+      await handler.pushImage()
+    } else {
+      logger.info('Image push skipped')
+    }
   })
 
 program

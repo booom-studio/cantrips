@@ -34,7 +34,7 @@
     "winston": "^2.4.0"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand",
     "lint": "eslint src",
     "babel:build": "babel src -d lib",
     "babel:watch": "babel src -d lib -w"
