@@ -1,8 +1,8 @@
 #! /usr/bin/env node
 'use strict'
-import ElasticBeanstalk from './elasticBeanstalk'
+import ElasticBeanstalk from './ElasticBeanstalk'
 import { DockerHandler } from './docker/DockerHandler'
-import S3Handler from './s3'
+import S3Handler from './S3Handler'
 
 import aws from './aws'
 import npm from './npm'

@@ -1,6 +1,6 @@
 /* eslint-env jest */
 
-import GitHandler from '../src/gitHandler'
+import GitHandler from '../src/GitHandler'
 
 import path from 'path'
 import { expect } from 'chai'

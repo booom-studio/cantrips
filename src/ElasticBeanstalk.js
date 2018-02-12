@@ -1,7 +1,7 @@
 'use strict'
 
 import logger from './logger'
-import { ParameterProvider } from './parameterProvider'
+import { ParameterProvider } from './ParameterProvider'
 import ContainerProvider from './docker/ContainerProvider'
 
 export default async (...args) => {

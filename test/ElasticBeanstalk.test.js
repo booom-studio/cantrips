@@ -1,6 +1,6 @@
 /* eslint-env jest */
 
-import ElasticBeanstalk from '../src/elasticBeanstalk'
+import ElasticBeanstalk from '../src/ElasticBeanstalk'
 import chai, { expect } from 'chai'
 import chaiAsPromised from 'chai-as-promised'
 

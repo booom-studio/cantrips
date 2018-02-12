@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { ParameterProvider } from '../src/parameterProvider'
+import { ParameterProvider } from '../src/ParameterProvider'
 
 import { expect } from 'chai'
 

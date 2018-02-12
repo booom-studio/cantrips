@@ -1,6 +1,6 @@
 /* eslint-env jest */
 
-import S3Handler from '../src/s3'
+import S3Handler from '../src/S3Handler'
 import chai, { expect } from 'chai'
 import chaiAsPromised from 'chai-as-promised'
 
