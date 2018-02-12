@@ -2,7 +2,7 @@
 
 import fs from 'fs'
 import path from 'path'
-import logger from './logger'
+import logger from './utils/Logger'
 
 async function createCredentials ({registryUrl, authToken, userFolder}) {
   logger.info(`Creating Npm credential file...`)

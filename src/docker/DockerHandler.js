@@ -1,8 +1,8 @@
 'use strict'
 
 import { ParameterProvider } from '../ParameterProvider'
-import { normalizeString, isNormalizedString, runCommand } from '../utils'
-import logger from '../logger'
+import { normalizeString, isNormalizedString, runCommand } from '../utils/utils'
+import logger from '../utils/Logger'
 
 export class DockerHandler {
   constructor (location, commandRunner = undefined) {

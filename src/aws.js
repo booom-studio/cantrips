@@ -2,7 +2,7 @@
 
 import fs from 'fs'
 import path from 'path'
-import logger from './logger'
+import logger from './utils/Logger'
 
 async function createCredentials ({accessKeyId, secretAccessKey, userFolder}) {
   logger.info(`Creating AWS credential file...`)

@@ -1,6 +1,6 @@
 'use strict'
 
-import logger from './logger'
+import logger from './utils/Logger'
 import { ParameterProvider } from './ParameterProvider'
 import ContainerProvider from './docker/ContainerProvider'
 

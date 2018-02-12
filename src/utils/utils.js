@@ -2,7 +2,7 @@
 
 import fs from 'fs'
 import { exec } from 'child_process'
-import logger from './logger'
+import logger from './Logger'
 
 function normalizeString (string) {
   return string.split('/').join('-').toLowerCase()

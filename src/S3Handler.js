@@ -1,7 +1,7 @@
 'use strict'
 
 import ContainerProvider from './docker/ContainerProvider'
-import logger from './logger'
+import logger from './utils/Logger'
 
 export default async (options) => {
   const handler = new S3Handler(options)

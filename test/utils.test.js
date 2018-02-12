@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import { expect } from 'chai'
-import { normalizeString } from '../src/utils.js'
+import { normalizeString } from '../src/utils/utils.js'
 
 describe('utils', () => {
   describe('normalizeString', async () => {

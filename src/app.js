@@ -7,7 +7,7 @@ import S3Handler from './S3Handler'
 import aws from './aws'
 import npm from './npm'
 import pjson from '../package.json'
-import logger from './logger'
+import logger from './utils/Logger'
 import program from 'commander'
 
 program

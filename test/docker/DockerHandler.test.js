@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import { DockerHandler } from '../../src/docker/DockerHandler'
-import { deleteFolderRecursive } from '../../src/utils'
+import { deleteFolderRecursive } from '../../src/utils/utils'
 
 import path from 'path'
 import { expect } from 'chai'
