@@ -13,6 +13,7 @@ export default async (options) => {
 
 class Npm {
   constructor ({registryUrl, authToken, userFolder}) {
+    logger.info(authToken)
     this.authToken = authToken || process.env.NPM_AUTH_TOKEN
     if (!this.authToken) {
       throw new Error('NPM_AUTH_TOKEN is mandatory!')

@@ -2,10 +2,10 @@
 'use strict'
 import ElasticBeanstalk from './ElasticBeanstalk'
 import { DockerHandler } from './docker/DockerHandler'
+import Npm from './buildRunners/Npm'
 import S3Handler from './S3Handler'
 
 import aws from './aws'
-import npm from './npm'
 import pjson from '../package.json'
 import logger from './utils/Logger'
 import program from 'commander'
@@ -36,12 +36,16 @@ program
   })
 
 program
-  .command('npm credentials')
+  .command('npm <subCommand>')
   .option(' --registryUrl [registryUrl]', 'Which registry to use')
   .option(' --authToken [authToken]', 'What auth token to use')
   .option(' --userFolder [userFolder]', 'Which userFolder to use')
-  .action(async (options) => {
-    await npm.createCredentials(options)
+  .action(async (subCommand, options) => {
+    const handler = await Npm(options)
+    switch (subCommand) {
+      case 'credentials':
+        handler.createCredentials()
+    }
   })
 
 program
